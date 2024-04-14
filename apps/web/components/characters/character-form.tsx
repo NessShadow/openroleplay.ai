@@ -55,6 +55,7 @@ const formSchema = z.object({
   model: z.string(),
   isNSFW: z.boolean(),
   voiceId: z.string(),
+  cardImageUrl: z.string(),
 });
 
 export default function CharacterForm() {
@@ -81,10 +82,10 @@ export default function CharacterForm() {
     instructions = searchParams.get("instructions") || "",
     greetings = searchParams.get("greetings") || "Hi.",
     cardImageUrl = searchParams.get("cardImageUrl") || "",
-    model = (searchParams.get("model") as any) || "anthropic/claude-3-haiku",
+    model = (searchParams.get("model") as any) || "tanamettpk/TC-Novid-v3",
     voiceId = (searchParams.get("voiceId") as any) || "MjxppkSa4IoDSRGySayZ",
     isDraft = searchParams.get("isDraft") || true,
-    isNSFW = Boolean(searchParams.get("isNSFW")) || false,
+    isNSFW = Boolean(searchParams.get("isNSFW")) || true,
     visibility: _visibility = searchParams.get("visibility") || "private",
   } = character || remixCharacter || {};
 
@@ -113,6 +114,7 @@ export default function CharacterForm() {
       model,
       voiceId,
       isNSFW,
+      cardImageUrl,
     },
   });
 
@@ -125,6 +127,7 @@ export default function CharacterForm() {
       model,
       voiceId,
       isNSFW,
+      cardImageUrl,
     });
   }, [
     character,
@@ -135,6 +138,7 @@ export default function CharacterForm() {
     model,
     voiceId,
     isNSFW,
+    cardImageUrl,
   ]);
 
   useEffect(() => {
@@ -180,6 +184,7 @@ export default function CharacterForm() {
       toast.error("File size should be less than 5MB");
       return;
     }
+    
     const imageBytes = await uploadedImage.arrayBuffer();
     const characterCardImageUrl = await upload({
       file: imageBytes,
@@ -235,7 +240,7 @@ export default function CharacterForm() {
             {characterId ? (
               <ArchiveButton characterId={characterId} />
             ) : (
-              <Link href="https://docs.openroleplay.ai">
+              <Link href="https://docs.RoleplayChat.ai">
                 <Button variant="outline" className="gap-1">
                   <Book className="h-4 w-4" />
                   {t("Docs")}
@@ -346,7 +351,7 @@ export default function CharacterForm() {
         <div className="my-4 flex w-full flex-col items-center justify-center gap-4">
           <Label
             htmlFor="card"
-            className="relative flex h-[350px] w-[200px] cursor-pointer flex-col items-center justify-center gap-2 rounded border border-dashed duration-200 hover:-translate-y-1 hover:border-border hover:shadow-lg"
+            className="relative flex h-[350px] w-[200px] flex-col items-center justify-center gap-2 rounded border border-dashed duration-200"
           >
             {cardImageUrl ? (
               <Image
@@ -360,12 +365,12 @@ export default function CharacterForm() {
               <>
                 <Plus />
                 <div className="flex flex-col items-center justify-center">
-                  {t("Add character card")}
-                  <span className="text-xs text-muted-foreground">
+                  {t("Preview character card")}
+                  {/* <span className="text-xs text-muted-foreground">
                     Best size: 1024x1792
-                  </span>
+                  </span> */}
                 </div>
-                <span className="text-xs">or</span>
+                {/* <span className="text-xs">or</span>
                 <Link
                   href={`/images${
                     form.getValues()?.description
@@ -374,11 +379,11 @@ export default function CharacterForm() {
                   }`}
                 >
                   <Button variant="outline">{t("Generate")}</Button>
-                </Link>
+                </Link> */}
               </>
             )}
           </Label>
-          <Input
+          {/* <Input
             id="card"
             type="file"
             accept="image/*"
@@ -387,13 +392,33 @@ export default function CharacterForm() {
               handleUploadImage(event.target.files![0]);
             }}
             className="hidden"
-          />
+          /> */}
         </div>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(debouncedSubmitHandle)}
             className="space-y-8"
           >
+            <FormField
+              control={form.control}
+              name="cardImageUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center gap-1">
+                    {t("Image")}
+                    <InfoTooltip
+                      content={
+                        "Image url used by the character to show in character card"
+                      }
+                    />
+                  </FormLabel>
+                  <FormControl>
+                    <Input placeholder={t("Set URL of your character image")} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="name"
@@ -414,7 +439,7 @@ export default function CharacterForm() {
                 </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="description"
               render={({ field }) => (
@@ -441,7 +466,7 @@ export default function CharacterForm() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
             <FormField
               control={form.control}
               name="instructions"
@@ -538,40 +563,12 @@ export default function CharacterForm() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="isNSFW"
-              render={({ field }) => (
-                <div className="flex flex-col space-y-2">
-                  <FormLabel className="flex gap-1">
-                    {t("Mature content")}
-                    <span className="text-muted-foreground">
-                      {t("(optional)")}
-                    </span>
-                  </FormLabel>
-                  <FormItem className="flex items-center space-x-2 pt-2">
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <FormLabel className="pb-2 font-normal">
-                      {t("This character is intended for adult.")}
-                    </FormLabel>
-                  </FormItem>
-                  <FormDescription>
-                    {t("Check this to enable uncensored models.")}
-                  </FormDescription>
-                </div>
-              )}
-            />
-            <ModelSelect
+            {/* <ModelSelect
               form={form}
               model={model}
               isNSFW={form.getValues("isNSFW")}
-            />
-            <VoiceSelect form={form} voiceId={voiceId} />
+            /> */}
+            {/* <VoiceSelect form={form} voiceId={voiceId} /> */}
           </form>
         </Form>
       </CardContent>

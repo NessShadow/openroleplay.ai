@@ -30,11 +30,7 @@ export const ModelSelect = ({
 }) => {
   const { t } = useTranslation();
   let modelData = useModelData();
-  if (isNSFW) {
-    modelData = modelData?.filter((model: any) => model.isNSFW);
-  } else {
-    modelData = modelData?.filter((model: any) => !model.isNSFW);
-  }
+  modelData = modelData?.filter((model: any) => model.isNSFW);
   if (modelData?.every((modelItem: any) => modelItem.value !== model)) {
     form.setValue("model", modelData[0].value);
   }

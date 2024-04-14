@@ -380,7 +380,7 @@ export default function Page() {
           {t("Crystal Top-Up")}
           <InfoTooltip
             content={t(
-              "Crystal is an universal currency for calling AI features in openroleplay.ai.",
+              "Crystal is an universal currency for calling AI features in RoleplayChat.ai.",
             )}
           />
         </h2>

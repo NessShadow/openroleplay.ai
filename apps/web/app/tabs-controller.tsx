@@ -53,7 +53,7 @@ function TabsController() {
             <span className="hidden lg:inline">{t("My")}</span>
           </TabsTrigger>
         </Link>
-        <Link href="/models">
+        {/* <Link href="/models">
           <TabsTrigger
             className="hidden w-full flex-col items-center gap-0.5 rounded-full lg:flex lg:flex-row lg:items-start"
             value="/models"
@@ -61,8 +61,8 @@ function TabsController() {
             <Package className="h-5 w-5 p-0.5 lg:p-1" />
             {t("Models")}
           </TabsTrigger>
-        </Link>
-        <Link href="/images">
+        </Link> */}
+        {/* <Link href="/images">
           <TabsTrigger
             className="w-16 flex-col items-center gap-0.5 rounded-full lg:flex lg:w-full lg:flex-row lg:items-start"
             value="/images"
@@ -70,8 +70,8 @@ function TabsController() {
             <Image className="h-5 w-5 p-0.5 lg:p-1" />
             {t("Images")}
           </TabsTrigger>
-        </Link>
-        <Link href="/crystals">
+        </Link> */}
+        {/* <Link href="/crystals">
           <TabsTrigger
             className="w-16 flex-col items-center gap-0.5 rounded-full lg:flex lg:w-full lg:flex-row lg:items-start"
             value="/crystals"
@@ -79,8 +79,8 @@ function TabsController() {
             <Crystal className="h-5 w-5 p-0.5 lg:p-1" />
             {t("Crystals")}
           </TabsTrigger>
-        </Link>
-        <Link href="/discord">
+        </Link> */}
+        {/* <Link href="/discord">
           <TabsTrigger
             className="hidden w-full flex-col items-center gap-0.5 rounded-full lg:flex lg:flex-row lg:items-start"
             value="/discord"
@@ -97,7 +97,7 @@ function TabsController() {
             <Book className="h-5 w-5 p-0.5 lg:p-1" />
             {t("Docs")}
           </TabsTrigger>
-        </Link>
+        </Link> */}
       </TabsList>
     </Tabs>
   );

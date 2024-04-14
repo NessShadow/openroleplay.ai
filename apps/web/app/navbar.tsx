@@ -34,7 +34,7 @@ export default function NavBar({}: {}) {
             </Link>
             {isAuthenticated ? (
               <>
-                {!isPlus && (
+                {/* {!isPlus && (
                   <Link
                     href="/crystals"
                     className="flex items-center justify-center"
@@ -43,10 +43,10 @@ export default function NavBar({}: {}) {
                       {t("Get ORP+")}
                     </Badge>
                   </Link>
-                )}
+                )} */}
               </>
             ) : (
-              <Tooltip content="Star openroleplay.ai on GitHub" desktopOnly>
+              <Tooltip content="Star RoleplayChat.ai on GitHub" desktopOnly>
                 <Link
                   className="hidden items-center gap-2 text-base text-muted-foreground hover:opacity-50 lg:flex"
                   href="/github"

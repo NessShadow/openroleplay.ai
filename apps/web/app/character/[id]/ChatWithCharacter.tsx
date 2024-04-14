@@ -20,6 +20,7 @@ import {
 import AddToHomeScreen from "../../../components/pwa/add-to-homescreen";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import useCurrentUser from "../../lib/hooks/use-current-user";
+import dynamic from 'next/dynamic';
 
 export const Stories = ({
   characterId,

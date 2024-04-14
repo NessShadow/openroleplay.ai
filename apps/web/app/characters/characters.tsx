@@ -52,6 +52,7 @@ const Characters = () => {
     { initialNumItems: 25 },
   );
   const allCharacters = results || [];
+  
   const characters = allCharacters.filter(
     (character) => character.name && character.cardImageUrl,
   );
@@ -132,11 +133,9 @@ const Characters = () => {
         </Carousel>
       </div>
       <div className="flex w-full grid-cols-2 flex-col gap-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 lg:pl-0 2xl:grid-cols-4">
+        <NewCharacter />
         {characters?.length > 0
           ? characters.map((character, index) => {
-              if (index === 0) {
-                return <NewCharacter />;
-              }
               if (character.name) {
                 return (
                   <CharacterCard
@@ -153,13 +152,12 @@ const Characters = () => {
                   />
                 );
               }
-              return null;
             })
-          : Array.from({ length: 10 }).map((_, index) => (
+          : Array.from({ length: 1 }).map((_, index) => (
               <CharacterCardPlaceholder key={index} />
             ))}
         {status === "LoadingMore" &&
-          Array.from({ length: 10 }).map((_, index) => (
+          Array.from({ length: 5 }).map((_, index) => (
             <CharacterCardPlaceholder key={index} />
           ))}
         <div ref={ref} />

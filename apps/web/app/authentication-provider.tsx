@@ -24,7 +24,7 @@ export function AuthenticationProvider({
     <ClerkProvider
       publishableKey={
         process.env.NODE_ENV === "development"
-          ? "pk_test_bmF0aW9uYWwtbW9zcXVpdG8tMjUuY2xlcmsuYWNjb3VudHMuZGV2JA"
+          ? "pk_test_YXBwYXJlbnQtZnJvZy04LmNsZXJrLmFjY291bnRzLmRldiQ"
           : process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
       }
       appearance={{

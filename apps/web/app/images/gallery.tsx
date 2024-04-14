@@ -161,11 +161,11 @@ const Gallery = ({ isMy = false }: { isMy?: boolean }) => {
                 creatorId={image?.creatorId}
               />
             ))
-          : Array.from({ length: 10 }).map((_, index) => (
+          : Array.from({ length: 3 }).map((_, index) => (
               <CharacterCardPlaceholder key={index} />
             ))}
         {status === "LoadingMore" &&
-          Array.from({ length: 10 }).map((_, index) => (
+          Array.from({ length: 5 }).map((_, index) => (
             <CharacterCardPlaceholder key={index} />
           ))}
 

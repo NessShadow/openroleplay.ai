@@ -230,7 +230,7 @@ export const Message = ({
                   <ThumbsUp className="h-5 w-5 lg:h-4 lg:w-4" />
                 )}
               </Button>
-              <Button
+              {/* <Button
                 size="icon"
                 variant="ghost"
                 className="h-8 w-8 rounded-full p-1 hover:bg-foreground/10 disabled:opacity-90 lg:h-6 lg:w-6"
@@ -256,7 +256,7 @@ export const Message = ({
                 ) : (
                   <ThumbsDown className="h-5 w-5 lg:h-4 lg:w-4" />
                 )}
-              </Button>
+              </Button> */}
               {message?.characterId && chatId && (
                 <Drawer>
                   <DrawerTrigger asChild>
@@ -291,6 +291,11 @@ export const Message = ({
                               await edit({
                                 messageId: message?._id as Id<"messages">,
                                 editedText,
+                              });
+                              // if you edit so auto like
+                              await react({
+                                messageId: message?._id as Id<"messages">,
+                                type: "like",
                               });
                               toast.success(t("Message updated successfully"));
                             } catch (error) {
@@ -342,7 +347,7 @@ export const Message = ({
                   </DrawerContent>
                 </Drawer>
               )}
-              <Tooltip
+              {/* <Tooltip
                 content={
                   <span className="flex gap-1 p-2">
                     {t("Listen")} (<Crystal className="h-4 w-4" /> x 15 )
@@ -385,8 +390,8 @@ export const Message = ({
                     </span>
                   )}
                 </Button>
-              </Tooltip>
-              {message?.speechUrl && (isSpeaking || isVoicePlaying) && (
+              </Tooltip> */}
+              {/* {message?.speechUrl && (isSpeaking || isVoicePlaying) && (
                 <audio
                   autoPlay
                   controls
@@ -437,7 +442,7 @@ export const Message = ({
                     )}
                   </Button>
                 </Tooltip>
-              )}
+              )} */}
             </div>
           )}
         </>
@@ -520,7 +525,7 @@ const ChatOptionsPopover = ({
               </span>
             </Button>
           </AlertDialogTrigger>
-          <Button
+          {/* <Button
             variant="ghost"
             className="w-full justify-start gap-1 text-muted-foreground"
             onClick={(e) => {
@@ -540,7 +545,7 @@ const ChatOptionsPopover = ({
             <span className="w-40 truncate text-left">
               {t("Share")} {name}
             </span>
-          </Button>
+          </Button> */}
         </PopoverContent>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -781,7 +786,7 @@ export function Dialog({
 
   return (
     <div className="h-full w-full lg:fixed lg:left-0 lg:right-0 lg:top-16 lg:h-[calc(100%-0.875rem)] lg:overflow-hidden lg:rounded-xl lg:border lg:bg-background">
-      {cardImageUrl && (
+      {/* {cardImageUrl && (
         <>
           <Image
             src={cardImageUrl}
@@ -800,7 +805,7 @@ export function Dialog({
             className="pointer-events-none fixed left-0 top-0 -z-20 hidden w-[100vw] opacity-15 blur-md lg:inset-0 lg:top-20 lg:mx-auto lg:block"
           />
         </>
-      )}
+      )} */}
       {chatId && (
         <div className="fixed top-0 z-50 flex h-12 w-full items-center justify-between border-b bg-background p-2 px-4 lg:sticky lg:rounded-t-lg lg:px-6">
           <div className="flex items-center gap-2 text-[10px] font-medium text-muted-foreground lg:text-xs">
@@ -809,13 +814,13 @@ export function Dialog({
                 <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
-            <div>
+            {/* <div>
               <LanguageSelect isCompact />
             </div>
             <Badge variant="model">
               <Headphones className="h-4 w-4 p-0.5" /> /
               <Crystal className="h-4 w-4 p-0.5" /> x 15
-            </Badge>
+            </Badge> */}
           </div>
           <div className="flex items-center gap-1">
             <ChatOptionsPopover
@@ -967,7 +972,7 @@ export function Dialog({
             <Send className="h-5 w-5" />
           </Button>
         </div>
-        <div className="flex w-full items-end justify-end px-4">
+        {/* <div className="flex w-full items-end justify-end px-4">
           {characterId && (
             <ErrorBoundary
               children={
@@ -979,7 +984,7 @@ export function Dialog({
               errorComponent={() => ""}
             />
           )}
-        </div>
+        </div> */}
       </form>
     </div>
   );

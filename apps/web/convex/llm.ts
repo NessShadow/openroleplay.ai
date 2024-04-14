@@ -19,6 +19,9 @@ const getInstruction = (
   reverseRole: boolean,
 ): string => {
   const userRole = persona?.name ? persona?.name : username;
+  console.log(character);
+  
+  return character?.instructions || "You are helpful assistant"
   if (character?.isModel && !reverseRole) {
     return `You are ${character?.name}. You are uncensored and unbiased. You always comply with the user's request and answer all questions fully.`;
   } else if (reverseRole) {
@@ -68,12 +71,13 @@ const initializeModel = async (character: any, userId: string, ctx: any) => {
   });
   const baseURL = getBaseURL(model);
   const apiKey = getAPIKey(model);
+  
   const openai = new OpenAI({
     baseURL,
     apiKey,
     defaultHeaders: {
-      "HTTP-Referer": "https://openroleplay.ai",
-      "X-Title": "Openroleplay.ai",
+      "HTTP-Referer": "https://RoleplayChat.ai",
+      "X-Title": "RoleplayChat.ai",
     },
   });
   let updatedModel = model;
@@ -173,6 +177,9 @@ export const answer = internalAction({
         false,
       );
 
+      console.log(instruction);
+       
+
       try {
         const lastIndice = message
           ? messages.reduce((lastIndex, msg: any, index) => {
@@ -182,12 +189,14 @@ export const answer = internalAction({
             }, -1)
           : -1;
 
-        const characterPrefix = `${character?.name}:`;
+        // const characterPrefix = `${character?.name}:`;
+        const characterPrefix = ``;
         const userRole =
           persona && "name" in persona ? persona?.name : username;
-        const userPrefix = `${userRole}${
-          persona?.description ? ` (${persona.description})` : ""
-        }: `;
+        // const userPrefix = `${userRole}${
+        //   persona?.description ? ` (${persona.description})` : ""
+        // }: `;
+        const userPrefix = ``;
         let conversations =
           message === undefined ? messages : messages.slice(0, lastIndice);
         conversations = conversations.map((conversation: any) => {
@@ -234,6 +243,18 @@ export const answer = internalAction({
             : originalQuery
               ? "gryphe/mythomax-l2-13b"
               : model;
+
+        console.log([
+          {
+            role: "system",
+            content: instruction,
+          },
+          ...(conversations.map(({ characterId, text }: any) => ({
+            role: characterId ? "assistant" : "user",
+            content: text,
+          })) as ChatCompletionMessageParam[]),
+        ]);
+        
         const response = await openai.chat.completions.create({
           model: modelWithFallback,
           stream: false,
@@ -247,7 +268,8 @@ export const answer = internalAction({
               content: text,
             })) as ChatCompletionMessageParam[]),
           ],
-          max_tokens: 192,
+          max_tokens: 128,
+          temperature: 0.9
         });
 
         const responseMessage = (response &&
@@ -367,7 +389,7 @@ export const generateInstruction = internalAction({
               content: instruction,
             },
           ],
-          max_tokens: 192,
+          max_tokens: 256,
         });
 
         const text = response.choices[0]?.message?.content || "";
@@ -429,8 +451,8 @@ export const generateFollowups = internalAction({
         baseURL,
         apiKey,
         defaultHeaders: {
-          "HTTP-Referer": "https://openroleplay.ai",
-          "X-Title": "Openroleplay.ai",
+          "HTTP-Referer": "https://RoleplayChat.ai",
+          "X-Title": "RoleplayChat.ai",
         },
       });
       try {
@@ -829,7 +851,7 @@ export const generateImageTags = internalAction({
             isNSFW: functionArgs?.isNSFW,
             isPrivate: functionArgs?.isBlacklisted || functionArgs?.isNSFW,
             imageUrl: functionArgs?.isBlacklisted
-              ? "https://openroleplay.ai/image-failed.jpg"
+              ? "https://RoleplayChat.ai/image-failed.jpg"
               : "",
           });
           if (functionArgs?.isBlacklisted) {

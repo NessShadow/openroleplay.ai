@@ -102,7 +102,8 @@ export default function UserDropdown() {
               <StyledLink
                 text={t("Account Portal")}
                 Icon={<CircleUser className="h-4 w-4 text-muted-foreground" />}
-                href="https://accounts.openroleplay.ai/user"
+                // href="https://accounts.RoleplayChat.ai/user"
+                href="https://apparent-frog-8.accounts.dev/user"
               />
               <StyledButton
                 text={t("Logout")}
@@ -112,13 +113,13 @@ export default function UserDropdown() {
                   signOut();
                 }}
               />
-              <StyledLink
+              {/* <StyledLink
                 text={t("Personas")}
                 Icon={
                   <CircleUserRound className="h-4 w-4 text-muted-foreground" />
                 }
                 href="/my-personas"
-              />
+              /> */}
             </>
           ) : (
             <div className="md:hidden">
@@ -132,28 +133,28 @@ export default function UserDropdown() {
               />
             </div>
           )}
-          <StyledLink
+          {/* <StyledLink
             href="/docs"
             text={t("Docs")}
             Icon={<Book className="h-4 w-4 text-muted-foreground" />}
             onClick={() => setOpenPopover(false)}
-          />
-          <StyledLink
+          /> */}
+          {/* <StyledLink
             href="/discord"
             text={t("Join Discord")}
             Icon={<Discord className="h-4 w-4 text-muted-foreground" />}
             onClick={() => setOpenPopover(false)}
-          />
-          <StyledLink
+          /> */}
+          {/* <StyledLink
             href="/crystals"
             text={t("Get Crystals")}
             Icon={<Crystal className="h-4 w-4 text-muted-foreground" />}
             onClick={() => setOpenPopover(false)}
-          />
-          <div className="flex flex-col gap-2">
+          /> */}
+          {/* <div className="flex flex-col gap-2">
             <PreferenceSelect />
             <LanguageSelect />
-          </div>
+          </div> */}
         </PopoverContent>
         <PopoverTrigger
           onClick={() => setOpenPopover(!openPopover)}

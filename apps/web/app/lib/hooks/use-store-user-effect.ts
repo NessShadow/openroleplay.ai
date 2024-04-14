@@ -8,6 +8,7 @@ import { Id } from "../../../convex/_generated/dataModel";
 export default function useStoreUserEffect() {
   const { isAuthenticated } = useConvexAuth();
   const { user } = useUser();
+  
   // When this state is set we know the server
   // has stored the user.
   const [userId, setUserId] = useState<Id<"users"> | null>(null);

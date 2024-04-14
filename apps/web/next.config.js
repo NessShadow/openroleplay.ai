@@ -28,7 +28,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "openroleplay.ai",
+        hostname: "RoleplayChat.ai",
         port: "",
         pathname: "/**",
       },
@@ -40,9 +40,13 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "r2.openroleplay.ai",
+        hostname: "r2.RoleplayChat.ai",
         port: "",
         pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
       },
     ],
   },
@@ -61,12 +65,12 @@ const nextConfig = {
       {
         source: "/star",
         destination:
-          "https://github.com/open-roleplay-ai/openroleplay.ai/stargazers",
+          "https://github.com/open-roleplay-ai/RoleplayChat.ai/stargazers",
         permanent: true,
       },
       {
         source: "/github",
-        destination: "https://github.com/open-roleplay-ai/openroleplay.ai",
+        destination: "https://github.com/open-roleplay-ai/RoleplayChat.ai",
         permanent: true,
       },
       {
@@ -76,7 +80,7 @@ const nextConfig = {
       },
       {
         source: "/docs",
-        destination: "https://docs.openroleplay.ai",
+        destination: "https://docs.RoleplayChat.ai",
         permanent: true,
       },
       {

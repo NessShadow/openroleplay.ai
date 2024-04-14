@@ -308,9 +308,9 @@ export const generateByPrompt = internalAction(
           modelHash =
             "charlesmccarthy/animagine-xl:d6f9644c586556cf0e09d136f7198becf2da31d1955160b2308545e21234ffa9";
           break;
-        case "daun-io/openroleplay.ai-animagine-v3":
+        case "daun-io/RoleplayChat.ai-animagine-v3":
           modelHash =
-            "daun-io/openroleplay.ai-animagine-v3:559becf07bc8ce089dc37afcdaf8f83bf1038ffcee22730ec5d1b42507b5465c";
+            "daun-io/RoleplayChat.ai-animagine-v3:559becf07bc8ce089dc37afcdaf8f83bf1038ffcee22730ec5d1b42507b5465c";
           break;
         case "asiryan/juggernaut-xl-v7":
           modelHash =
@@ -334,7 +334,7 @@ export const generateByPrompt = internalAction(
           break;
         default:
           modelHash =
-            "daun-io/openroleplay.ai-animagine-v3:559becf07bc8ce089dc37afcdaf8f83bf1038ffcee22730ec5d1b42507b5465c";
+            "daun-io/RoleplayChat.ai-animagine-v3:559becf07bc8ce089dc37afcdaf8f83bf1038ffcee22730ec5d1b42507b5465c";
       }
 
       const dimensions = {
@@ -396,7 +396,7 @@ export const generateByPrompt = internalAction(
       console.log("Image uploaded, extracting image URL");
       const urlParts = response.url.split("/");
       const filename = urlParts[urlParts.length - 1];
-      const imageUrl = `https://r2.openroleplay.ai/${filename}`;
+      const imageUrl = `https://r2.RoleplayChat.ai/${filename}`;
       console.log(`Image URL extracted: ${imageUrl}`);
       await ctx.runMutation(internal.images.uploadR2Image, {
         imageId,
@@ -435,7 +435,7 @@ export const upload = action({
     console.log("Image uploaded, extracting image URL");
     const urlParts = response.url.split("/");
     const uploadedFilename = urlParts[urlParts.length - 1];
-    const imageUrl = `https://r2.openroleplay.ai/${uploadedFilename}`;
+    const imageUrl = `https://r2.RoleplayChat.ai/${uploadedFilename}`;
     console.log(`Image URL extracted: ${imageUrl}`);
     return imageUrl;
   },

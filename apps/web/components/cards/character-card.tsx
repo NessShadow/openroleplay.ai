@@ -117,9 +117,9 @@ const CharacterCard = (props: {
                 <X className="h-4 w-4 text-muted-foreground" />
               </Button>
             )}
-            <div className="absolute top-4 z-[3] hover:z-[4]">
+            {/* <div className="absolute top-4 z-[3] hover:z-[4]">
               <ModelBadge modelName={props.model as string} />
-            </div>
+            </div> */}
             <CardHeader
               className={`relative z-[2] w-full p-4 ${hide ? "pb-24" : ""}`}
             >

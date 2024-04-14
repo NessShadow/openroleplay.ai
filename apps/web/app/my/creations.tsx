@@ -34,7 +34,7 @@ const Creations = () => {
   );
   const allCharacters = results || [];
   const characters = allCharacters.filter(
-    (character) => character.name && character.cardImageUrl,
+    (character) => character.name //&& character.cardImageUrl,
   );
 
   const [_api, setApi] = useState<CarouselApi>();
@@ -55,6 +55,7 @@ const Creations = () => {
     _api.on("select", () => {
       setCurrent(_api.selectedScrollSnap() + 1);
     });
+
   }, [_api, characters]);
 
   const me = useCurrentUser();
@@ -115,9 +116,9 @@ const Creations = () => {
                           />
                         </CarouselItem>
                       </>
-                    ),
+                  ),
                 )
-              : Array.from({ length: 10 }).map((_, index) => (
+              : Array.from({ length: 2 }).map((_, index) => (
                   <CarouselItem
                     className="md:basis-1/2 lg:basis-1/3 2xl:basis-1/4"
                     key={index + "placeholder"}
@@ -126,7 +127,7 @@ const Creations = () => {
                   </CarouselItem>
                 ))}
             {status === "LoadingMore" &&
-              Array.from({ length: 10 }).map((_, index) => (
+              Array.from({ length: 5 }).map((_, index) => (
                 <CarouselItem
                   className="md:basis-1/2 lg:basis-1/3 2xl:basis-1/4"
                   key={index + "loader"}
@@ -140,16 +141,16 @@ const Creations = () => {
         </Carousel>
       </div>
 
-      <div className="flex items-center gap-1 px-4 font-medium lg:mt-2 lg:px-0">
+      {/* <div className="flex items-center gap-1 px-4 font-medium lg:mt-2 lg:px-0">
         <Link href="/my-personas" className="flex items-center gap-1">
           {t("My Personas")}
           <Button variant="ghost" size="icon">
             <ChevronRight />
           </Button>
         </Link>
-      </div>
+      </div> */}
       {/* <MainStories /> */}
-      <section className="flex flex-col gap-4 lg:w-[calc(80%+4rem)] lg:gap-8">
+      {/* <section className="flex flex-col gap-4 lg:w-[calc(80%+4rem)] lg:gap-8">
         <div className="flex items-center gap-1 border-b px-4 pb-4 font-medium lg:border-none lg:px-0 lg:pb-0">
           <Link href="/images?isMy=true" className="flex items-center gap-1">
             {t("My Images")}
@@ -161,7 +162,7 @@ const Creations = () => {
         <ErrorBoundary errorComponent={() => ""}>
           <Gallery isMy={true} />
         </ErrorBoundary>
-      </section>
+      </section> */}
     </div>
   );
 };

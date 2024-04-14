@@ -57,7 +57,9 @@ const SignInDialog = ({
             </AlertDialogDescription>
           </div>
           <div className="flex flex-col items-center gap-4">
-            <Link href="https://accounts.openroleplay.ai/sign-up">
+            {/* <Link href="https://accounts.RoleplayChat.ai/sign-up"> */}
+            <Link href="https://apparent-frog-8.accounts.dev/sign-up">
+            {/* <Link href="sign-in-dialog.tsx file here have fix link so i removed it"> */}
               <AlertDialogAction>{t("Sign up")}</AlertDialogAction>
             </Link>
             <Link
