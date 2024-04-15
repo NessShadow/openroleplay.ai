@@ -53,7 +53,7 @@ export const getAPIKey = (modelName: string) => {
       return process.env.MISTRAL_API_KEY;
     // TODO - Removed Dev API keys
     case "tanamettpk/TC-Novid-v3":
-      return process.env.NOVID_API_KEY || "F4ZKMIKHWCC0HWSO572L6Q9EMY2EU2H5ADAW4LKX";
+      return process.env.NOVID_API_KEY || "";
     default:
       return process.env.OPENROUTER_API_KEY;
   }
